@@ -1,0 +1,18 @@
+{
+    "include": [
+        {
+            "keyboard": "tutorial",
+            "keymap": "vial",
+            "target": "uf2",
+            "flags": "EXTRAFLGAS=-DINIT_EE_HANDS_LEFT",
+            "name": "tutorial_vial_left"
+        },
+        {
+            "keyboard": "tutorial",
+            "keymap": "vial",
+            "target": "uf2",
+            "flags": "EXTRAFLGAS=-DINIT_EE_HANDS_RIGHT",
+            "name": "tutorial_vial_right"
+        }
+    ]
+}

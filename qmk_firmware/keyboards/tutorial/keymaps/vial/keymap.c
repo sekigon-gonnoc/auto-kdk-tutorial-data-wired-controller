@@ -51,6 +51,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
+// Tap Dance definitions
+#define TAP_DANCE_ENTRY(onTap, onHold, onDoubleTap, onTapHold, tappingTerm) ((vial_tap_dance_entry_t){.on_tap = onTap, .on_hold = onHold, .on_double_tap = onDoubleTap, .on_tap_hold = onTapHold, .custom_tapping_term = tappingTerm})
+#if VIAL_TAP_DANCE_ENTRIES > 0
+const vial_tap_dance_entry_t default_tap_dance_entries[] = {
+};
+#endif
+
+// Combo definitions
+#define COMBO_ENTRY(k1, k2, k3, k4, result) ((vial_combo_entry_t){.input ={k1, k2, k3, k4}, .output = result})
+#if VIAL_COMBO_ENTRIES > 0
+const vial_combo_entry_t PROGMEM default_combo_entries[] = {
+};
+#endif
+
 // Initialize Vial dynamic items
 __attribute__((weak)) void eeconfig_init_user_manual(void) {}
 void                       eeconfig_init_user(void) {

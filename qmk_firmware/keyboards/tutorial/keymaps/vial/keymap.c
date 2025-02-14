@@ -4,6 +4,8 @@
 
 /* USER INCLUDE BEGIN *//* USER INCLUDE END */
 
+/* GENERATED CODE BEGIN */
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
                    KC_Q,            KC_W,            KC_E,            KC_R,
@@ -51,6 +53,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
+#if defined(ENCODER_MAP_ENABLE)
+const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
+};
+#endif
+
 // Tap Dance definitions
 #define TAP_DANCE_ENTRY(onTap, onHold, onDoubleTap, onTapHold, tappingTerm) ((vial_tap_dance_entry_t){.on_tap = onTap, .on_hold = onHold, .on_double_tap = onDoubleTap, .on_tap_hold = onTapHold, .custom_tapping_term = tappingTerm})
 #if VIAL_TAP_DANCE_ENTRIES > 0
@@ -82,8 +89,10 @@ const vial_combo_entry_t PROGMEM default_combo_entries[] = {
 #endif
 
 // Initialize Vial dynamic items
-__attribute__((weak)) void eeconfig_init_user_manual(void) {}
-void                       eeconfig_init_user(void) {
+void __real_dynamic_keymap_reset(void);
+void __wrap_dynamic_keymap_reset(void) {
+    __real_dynamic_keymap_reset();
+
 #if VIAL_TAP_DANCE_ENTRIES > 0
     for (size_t i = 0; i < sizeof(default_tap_dance_entries) / sizeof(default_tap_dance_entries[0]); ++i) {
         dynamic_keymap_set_tap_dance(i, &default_tap_dance_entries[i]);
@@ -94,7 +103,17 @@ void                       eeconfig_init_user(void) {
         dynamic_keymap_set_combo(i, &default_combo_entries[i]);
     }
 #endif
-
-    eeconfig_init_user_manual();
+#if VIAL_KEY_OVERRIDE_ENTRIES > 0
+    for (size_t i = 0; i < sizeof(default_key_override_entries) / sizeof(default_key_override_entries[0]); ++i) {
+        dynamic_keymap_set_key_override(i, &default_key_override_entries[i]);
+    }
+#endif
+    uint16_t const macro_buffer_size = MIN(sizeof(default_macro_buffer), dynamic_keymap_macro_get_buffer_size());
+    dynamic_keymap_macro_set_buffer(0, macro_buffer_size, (uint8_t *)default_macro_buffer);
 }
+
+
+/* GENERATED CODE BEGIN */
+
+
 /* USER CODE BEGIN *//* USER CODE END */

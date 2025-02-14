@@ -88,9 +88,16 @@ const vial_combo_entry_t PROGMEM default_combo_entries[] = {
 };
 #endif
 
+// Macro buffer
+const uint8_t PROGMEM default_macro_buffer[] = {
+    
+};
+
 // Key Override definitions
+#if VIAL_KEY_OVERRIDE_ENTRIES > 0
 const vial_key_override_entry_t default_key_override_entries[] = {
 };
+#endif
 
 // Initialize Vial dynamic items
 void __real_dynamic_keymap_reset(void);

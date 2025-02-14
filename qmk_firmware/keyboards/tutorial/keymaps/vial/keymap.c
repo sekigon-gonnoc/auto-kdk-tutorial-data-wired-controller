@@ -88,6 +88,10 @@ const vial_combo_entry_t PROGMEM default_combo_entries[] = {
 };
 #endif
 
+// Key Override definitions
+const vial_key_override_entry_t default_key_override_entries[] = {
+};
+
 // Initialize Vial dynamic items
 void __real_dynamic_keymap_reset(void);
 void __wrap_dynamic_keymap_reset(void) {
